@@ -1,5 +1,6 @@
 <?php
     class Page {
+        private $_name;
         private $_title;
         private $_root;
         private $_page_category;
@@ -8,7 +9,8 @@
         private $_header;
         private $_footer;
 
-        public function __construct($title, $root, $page_category) {
+        public function __construct($name, $title, $root, $page_category) {
+            $this->_name = $name;
             $this->_title = $title;
             $this->_root = $root;
             $this->_page_category = $page_category;
@@ -34,6 +36,9 @@
             }
             return $css_paths;
         }
+        public function getPageName() {
+            return $this->_name;
+        }
         public function getScriptPaths() {
             $script_paths = array();
             for ($i = 0; $i < sizeof($this->_components); $i++) {
@@ -50,11 +55,13 @@
         }
 
         public function render() {
-            $html = $this->_header->render();
+            $html = $this->_header->render()
+                  . "<div class=\"fluid-container\">";
             for ($i = 0; $i < sizeof($this->_components); $i++) {
                 $html .= $this->_components[$i]->render();
             }
-            $html .= $this->_footer->render();
+            $html.= "</div>"
+                  . $this->_footer->render();
             return $html;
         }
     }
