@@ -13,9 +13,9 @@
                 $this->_styles[$query] = $styles;
             }
         }
-        public function merge_style_sheet($stylesheet) {
+        public function merge_stylesheet($stylesheet) {
             if ($stylesheet instanceof StyleSheet) {
-                foreach ($stylesheet as $query => $styles) {
+                foreach ($stylesheet->get_styles() as $query => $styles) {
                     if (array_key_exists($query, $this->_styles)) {
                         array_merge($this->_styles[$query], $styles);
                     } else {
@@ -25,6 +25,9 @@
             } else {
                 throw new InvalidArgumentException();
             }
+        }
+        public function get_styles() {
+            return $this->_styles;
         }
 
         // Utitlity functions
