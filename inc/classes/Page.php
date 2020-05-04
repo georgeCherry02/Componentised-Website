@@ -8,6 +8,7 @@
 
         private $_header;
         private $_footer;
+        private $_stylesheet;
 
         public function __construct($name, $title, $root, $page_category) {
             $this->_name = $name;
@@ -17,24 +18,20 @@
 
             $this->_header = new Header($this);
             $this->_footer = new Footer();
+
+            $this->_stylesheet = new StyleSheet();
         }
 
         public function addComponent($component) {
             // Verify the thing you're tring to add actually is a component
             if ($component instanceof Component) {
                 array_push($this->_components, $component);
+                $this->_stylesheet->merge_stylesheet($component->getStyleSheet());
             }
         }
         
         public function getTitle() {
             return $this->_title;
-        }
-        public function getCSSPaths() {
-            $css_paths = array("./".$this->_page_category->getProperty("uri_name")."/css/".$this->_root.".css");
-            for ($i = 0; $i < sizeof($this->_components); $i++) {
-                array_push($css_paths, "./".$this->_components[$i]->getCategory()->getProperty("uri_name")."/css/components/".get_class($this->_components[$i]).".css");
-            }
-            return $css_paths;
         }
         public function getPageName() {
             return $this->_name;

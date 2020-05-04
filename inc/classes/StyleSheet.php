@@ -13,6 +13,19 @@
                 $this->_styles[$query] = $styles;
             }
         }
+        public function merge_style_sheet($stylesheet) {
+            if ($stylesheet instanceof StyleSheet) {
+                foreach ($stylesheet as $query => $styles) {
+                    if (array_key_exists($query, $this->_styles)) {
+                        array_merge($this->_styles[$query], $styles);
+                    } else {
+                        $this->_styles[$query] = $styles;
+                    }
+                }
+            } else {
+                throw new InvalidArgumentException();
+            }
+        }
 
         // Utitlity functions
         public function set_query_text_colour($query, $colour) {
