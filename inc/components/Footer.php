@@ -8,6 +8,9 @@
                   . "</html>";
             return $html;
         }
+        public function getStyleSheet() {
+            return new StyleSheet();
+        }
         public function getCategory() {
             return ComponentCategories::Base();
         }
