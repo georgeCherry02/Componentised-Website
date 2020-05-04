@@ -35,12 +35,13 @@
 
         private function render_styling() {
             $style = new StyleSheet();
-            $style->add_query_styles("nav.navbar", array("background-color" => COLOUR_SCHEME["white"], "box-shadow" => "0px 2px 5px #555"));
-            $style->add_query_styles("a.nav-link", array("color" => COLOUR_SCHEME["dark"]));
-            $style->add_query_styles("a.nav-link:hover", array("color" => HOVER_COLOUR_SCHEME["dark"]));
-            $style->add_query_styles("li.active a.nav-link", array("color" => COLOUR_SCHEME["highlight"], "cursor" => "default", "pointer-events" => "none"));
-            $style->add_query_styles("a.navbar-brand", array("color" => COLOUR_SCHEME["highlight"]));
-            $style->add_query_styles("button.navbar-toggler i", array("color" => COLOUR_SCHEME["highlight"]));
+            $style->set_query_shadow("nav.navbar", 0, 2, 5, "#555");
+            $style->set_query_background_colour("nav.navbar", COLOUR_SCHEME["white"]);
+            $style->set_query_styles("a.nav-link", array("color" => COLOUR_SCHEME["dark"]));
+            $style->set_query_styles("a.nav-link:hover", array("color" => HOVER_COLOUR_SCHEME["dark"]));
+            $style->set_query_styles("li.active a.nav-link", array("color" => COLOUR_SCHEME["highlight"], "cursor" => "default", "pointer-events" => "none"));
+            $style->set_query_styles("a.navbar-brand", array("color" => COLOUR_SCHEME["highlight"]));
+            $style->set_query_styles("button.navbar-toggler i", array("color" => COLOUR_SCHEME["highlight"]));
             return $style->render();
         }
 
