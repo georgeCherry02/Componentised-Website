@@ -14,7 +14,7 @@
                             // Outline the header on small devices
                   .         "<div class=\"container\">"
                   .             "<a class=\"navbar-brand\" href=\"?loc=default\">".WEBSITE_NAME."</a>"
-                  .             "<button class=\"navbar-toggler\"  style=\"float: right;\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">"
+                  .             "<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">"
                   .                 "<span class=\"navbar-toggler-icon\"></span>"
                   .             "</button>"
                             // Elaborate on full content of navbar
