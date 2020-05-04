@@ -10,12 +10,12 @@
         }
 
         public function render() {
-            $html = "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">"
+            $html = "<nav class=\"navbar navbar-expand-lg\">"
                             // Outline the header on small devices
                   .         "<div class=\"container\">"
                   .             "<a class=\"navbar-brand\" href=\"?loc=default\">".WEBSITE_NAME."</a>"
                   .             "<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">"
-                  .                 "<span class=\"navbar-toggler-icon\"></span>"
+                  .                 "<i class=\"fas fa-bars blue-text\"></i>"
                   .             "</button>"
                             // Elaborate on full content of navbar
                       .         "<div id=\"navbarContent\" class=\"navbar-collapse collapse\">"
@@ -29,7 +29,19 @@
                   .         "</div>"
                   .     "</div>"
                   . "</nav>";
+            $html.= $this->render_styling();
             return $html;
+        }
+
+        private function render_styling() {
+            $style = new StyleSheet();
+            $style->add_query_styles("nav.navbar", array("background-color" => COLOUR_SCHEME["white"], "box-shadow" => "0px 2px 5px #555"));
+            $style->add_query_styles("a.nav-link", array("color" => COLOUR_SCHEME["dark"]));
+            $style->add_query_styles("a.nav-link:hover", array("color" => HOVER_COLOUR_SCHEME["dark"]));
+            $style->add_query_styles("li.active a.nav-link", array("color" => COLOUR_SCHEME["highlight"], "cursor" => "default", "pointer-events" => "none"));
+            $style->add_query_styles("a.navbar-brand", array("color" => COLOUR_SCHEME["highlight"]));
+            $style->add_query_styles("button.navbar-toggler i", array("color" => COLOUR_SCHEME["highlight"]));
+            return $style->render();
         }
 
         private function render_top_level_structure($group_name, $structure) {
