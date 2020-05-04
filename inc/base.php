@@ -25,6 +25,14 @@
     // Build the pages up with components...
     $home_page->addComponent(new NavBar($website_structure, $home_page));
 
+    Text::header("Test Header 1");
+    Text::sub_header("Test Subheader 1");
+    $text1 = Text::create(array("This is a test set of text", "Hopefully this'll work even if it's a bit large"));
+    $home_page->addComponent($text1);
+    Text::header("Test Header 2");
+    $text2 = Text::create(array("This is the second body of the text"));
+    $home_page->addComponent($text2);
+
     // Set initial location
     $location = array("default");
 ?>
