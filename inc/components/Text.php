@@ -13,12 +13,21 @@
         private $_header;
         private $_sub_header;
 
+        private $_stylesheet;
+
         private function __construct($text, $align, $use_dividers, $header, $sub_header) {
             $this->_text = $text;
             $this->_align = $align;
             $this->_use_dividers = $use_dividers;
             $this->_header = $header;
             $this->_sub_header = $sub_header;
+
+            $this->_define_style();
+        }
+
+        private function _define_style() {
+            $this->_stylesheet = new StyleSheet();
+            $this->_stylesheet->add_query_styles(".text_block_header_container", array("margin-bottom" => "0.5em"));
         }
 
         public static function use_dividers() {
@@ -44,18 +53,23 @@
         }
 
         public function render() {
-            $html = "<div class=\"container\">";
+            $html = "<div class=\"container\">"
+                  .     "<div class=\"text_block_header_container\">";
             if (!is_null($this->_header)) {
-                $html.= "<h2>".$this->_header."</h2>";
+                $html.=     "<h2>".$this->_header."</h2>";
                 if (!is_null($this->_sub_header)) {
-                    $html.="<h3>".$this->_sub_header."</h3>";
+                    $html.= "<h3>".$this->_sub_header."</h3>";
                 }
             }
+            $html.=     "</div>";
             foreach ($this->_text as $text_body) {
                 $html.= "<p class=\"text-".$this->_align." text-break\">".$text_body."</p>";
             }
             $html.= "</div>";
             return $html;
+        }
+        public function getStyleSheet() {
+            return $this->_stylesheet;
         }
         public function getCategory() {
             return ComponentCategories::Base();
