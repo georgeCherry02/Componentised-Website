@@ -58,6 +58,7 @@
                 $html .= $this->_components[$i]->render();
             }
             $html.= "</div>"
+                  . $this->_stylesheet->render()
                   . $this->_footer->render();
             return $html;
         }
