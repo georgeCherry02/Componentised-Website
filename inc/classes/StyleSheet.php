@@ -13,6 +13,22 @@
                 $this->_styles[$query] = $styles;
             }
         }
+        public function merge_stylesheet($stylesheet) {
+            if ($stylesheet instanceof StyleSheet) {
+                foreach ($stylesheet->get_styles() as $query => $styles) {
+                    if (array_key_exists($query, $this->_styles)) {
+                        array_merge($this->_styles[$query], $styles);
+                    } else {
+                        $this->_styles[$query] = $styles;
+                    }
+                }
+            } else {
+                throw new InvalidArgumentException();
+            }
+        }
+        public function get_styles() {
+            return $this->_styles;
+        }
 
         // Utitlity functions
         public function set_query_text_colour($query, $colour) {

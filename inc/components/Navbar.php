@@ -29,21 +29,11 @@
                   .         "</div>"
                   .     "</div>"
                   . "</nav>";
-            $html.= $this->render_styling();
             return $html;
         }
 
         private function render_styling() {
-            $style = new StyleSheet();
-            $style->set_query_shadow("nav.navbar", 0, 2, 5, "#555");
-            $style->set_query_background_colour("nav.navbar", COLOUR_SCHEME["white"]);
-            $style->set_query_styles("a.nav-link", array("color" => COLOUR_SCHEME["dark"]));
-            $style->set_query_styles("a.nav-link:hover", array("color" => HOVER_COLOUR_SCHEME["dark"]));
-            $style->set_query_styles("li.active a.nav-link", array("color" => COLOUR_SCHEME["highlight"], "cursor" => "default", "pointer-events" => "none"));
-            $style->set_query_styles("a.navbar-brand", array("color" => COLOUR_SCHEME["highlight"]));
-            $style->set_query_styles("button.navbar-toggler i", array("color" => COLOUR_SCHEME["highlight"]));
-            return $style->render();
-        }
+                    }
 
         private function render_top_level_structure($group_name, $structure) {
             $html = "<li class=\"nav-item";
@@ -87,6 +77,17 @@
             return $html;
         }
 
+        public function getStyleSheet() {
+            $style = new StyleSheet();
+            $style->set_query_shadow("nav.navbar", 0, 2, 5, "#555");
+            $style->set_query_background_colour("nav.navbar", COLOUR_SCHEME["white"]);
+            $style->set_query_styles("a.nav-link", array("color" => COLOUR_SCHEME["dark"]));
+            $style->set_query_styles("a.nav-link:hover", array("color" => HOVER_COLOUR_SCHEME["dark"]));
+            $style->set_query_styles("li.active a.nav-link", array("color" => COLOUR_SCHEME["highlight"], "cursor" => "default", "pointer-events" => "none"));
+            $style->set_query_styles("a.navbar-brand", array("color" => COLOUR_SCHEME["highlight"]));
+            $style->set_query_styles("button.navbar-toggler i", array("color" => COLOUR_SCHEME["highlight"]));
+            return $style;
+        }
         public function getCategory() {
             return ComponentCategories::Base();
         }

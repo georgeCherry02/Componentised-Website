@@ -7,7 +7,6 @@
         }
 
         public function render() {
-            $css_links = $this->_containing_page->getCSSPaths();
             $script_links = $this->_containing_page->getScriptPaths();
             $html = "<!DOCTYPE html>"
                   .     "<html lang=\"en\">"
@@ -16,10 +15,6 @@
                   .             "<title>".WEBSITE_NAME." | ".$this->_containing_page->getTitle()."</title>"
                                 // Add core stylesheet
                   .             "<link rel='stylesheet' type='text/css' href='./base/css/main.css'/>";
-            for ($i = 0; $i < sizeof($css_links); $i++) {
-                                // Add each component stylesheet
-                $html .=        "<link rel='stylesheet' type='text/css' href='".$css_links[$i]."'/>";
-            }
             for ($i = 0; $i < sizeof($script_links); $i++) {
                                 // Add the scripts for each component
                 $html .=        "<script src='".$script_links[$i]."'></script>";
@@ -35,6 +30,9 @@
                   .         "</head>"
                   .         "<body>";
             return $html;
+        }
+        public function getStyleSheet() {
+            return new StyleSheet();
         }
         public function getCategory() {
             return ComponentCategories::Base();
