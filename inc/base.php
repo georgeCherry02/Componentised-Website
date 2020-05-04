@@ -24,6 +24,9 @@
     $website_structure = array("default" => $home_page, "test1" => $test_page_1, "Test Group Name" => array("test2" => $test_page_2, "test3" => $test_page_3));
     // Build the pages up with components...
     $home_page->addComponent(new NavBar($website_structure, $home_page));
+    Text::header("Test Header");
+    $text = Text::create(array("This is a test set of text", "Hopefully this'll work even if it's a bit large"));
+    $home_page->addComponent($text);
 
     // Set initial location
     $location = array("default");
