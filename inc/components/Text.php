@@ -27,7 +27,7 @@
 
         private function _define_style() {
             $this->_stylesheet = new StyleSheet();
-            $this->_stylesheet->add_query_styles(".text_block_header_container", array("margin-bottom" => "0.5em"));
+            $this->_stylesheet->add_query_styles(".text_block_header_container", array("margin-bottom" => "1em"));
         }
 
         public static function use_dividers() {
