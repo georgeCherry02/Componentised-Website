@@ -18,6 +18,16 @@
     // This file obviously isn't on github, however essentially outlines the 4 constants used in the DB class in Database.php
     include_once "../inc/db_constants.php";
 
+    // Determine which modules are being used
+    const ACCOUNT_SYSTEM_ENABLED = TRUE;
+
+    // Depending on modules used load appropriate files
+    if (ACCOUNT_SYSTEM_ENABLED) {
+        foreach (glob("../inc/accounts_system/*.php") as $file) {
+            include_once $file;
+        }
+    }
+
     // Declare all pages
     $home_page = new Page("Home", "Welcome!", "default", ComponentCategories::Base());
     $test_page_1 = new Page("Test 1", "Test Page", "test1", ComponentCategories::Base());
