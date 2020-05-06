@@ -1,8 +1,32 @@
 <?php
     include_once "../inc/base.php";
-    $current_page = $website_structure[$location[0]];
-    for ($i = 1; $i < sizeof($location); $i++) {
-        $current_page = $current_page[$location[$i]];
+
+    if (isset($_GET["loc"])) {
+        $_SESSION["Location"] = $_GET["loc"];
+        header("Location: default.php");
     }
-    echo $current_page->render();
+
+    $page = $website_structure["default"];
+    if (isset($_SESSION["Location"])) {
+        foreach ($website_structure as $tls_name => $tls) {
+            if ($tls instanceof Page) {
+                if ($tls_name === $_SESSION["Location"]) {
+                    $page = $tls;
+                    $found_page = true;
+                }
+            } else if (gettype($tls) === "array") {
+                foreach ($website_structure[$tls_name] as $sls_name => $sls) {
+                    if ($sls_name === $_SESSION["Location"]) {
+                        $page = $sls;
+                        $found_page = true;
+                    }
+                }
+            }
+            if ($found_page) {
+                break;
+            }
+        }
+    }
+
+    echo $page->render();
 ?>
