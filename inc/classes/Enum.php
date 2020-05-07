@@ -47,6 +47,25 @@
             throw new OutOfRangeException();
         }
 
+        public static function ALL() {
+            $class_name = get_called_class();
+            $class_reflection = new ReflectionClass($class_name);
+            $methods = $class_reflection->getMethods(ReflectionMethod::IS_STATIC && ReflectionMethod::IS_PUBLIC);
+
+            $all_enums = array();
+
+            foreach ($methods as $method) {
+                if ($method-> class === $class_name) {
+                    $enum_item = $method->invoke(NULL);
+                    if ($enum_item instanceof $class_name) {
+                        array_push($all_types, $enum_item);
+                    }
+                }
+            }
+
+            return $all_types;
+        }
+
         protected static function _initialise($properties, $valid_properties) {
 
             // Validate properties
