@@ -52,7 +52,7 @@
             $class_reflection = new ReflectionClass($class_name);
             $methods = $class_reflection->getMethods(ReflectionMethod::IS_STATIC && ReflectionMethod::IS_PUBLIC);
 
-            $all_enums = array();
+            $all_types = array();
 
             foreach ($methods as $method) {
                 if ($method-> class === $class_name) {
