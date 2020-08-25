@@ -1,2 +1,2 @@
 # Componentised-Website
- Trying to implement OOP to create a componentised website
+ Trying to use OOP to create a basic framework for PHP website building
